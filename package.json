@@ -1,5 +1,5 @@
 {
-  "name": "nearest-neighbor",
+  "name": "@ignatisd/nearest-neighbor",
   "version": "1.0.0",
   "description": "Helps with the nearest neighbor problem",
   "main": "nearestNeighbor.js",
