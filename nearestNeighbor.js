@@ -70,7 +70,8 @@ function NearestNeighborBruteForce(neighbors, distanceFn) {
  *       //other points
  *  ];
  * var index = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
- * // index will equal 2, because {x: 5, y: 5} is the nearest neighbor for {x: 6, y: 6} who is the home point
+ * // index will equal 2, because {x: 5, y: 5} is
+ * // the nearest neighbor for {x: 6, y: 6} who is the home point
  */
 function NearestNeighborsIndex(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
@@ -108,7 +109,8 @@ function NearestNeighborsIndex(home, neighbors, distanceFn) {
  *       //other points
  *  ];
  * var neighbor = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
- * // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is the nearest neighbor for {x: 6, y: 6} who is the home point
+ * // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is
+ * // the nearest neighbor for {x: 6, y: 6} who is the home point
  */
 function NearestNeighbor(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
