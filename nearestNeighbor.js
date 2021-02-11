@@ -1,20 +1,24 @@
 /**
- * Brute forcing the nearest neighbor problem.
- *
  * @module nearestNeighbor
- * @author Ignatios Drakoulas
+ * @alias nn
  *
- **/
+ * @description Brute forcing the nearest neighbor problem.
+ * @author Ignatios Drakoulas
+ * @license MIT
+ *
+ */
 
 /**
  * Sorts all the neighbors by their respective distance starting from the first
  *
- * @param {Point[]|any[]} neighbors
- * @param {Function} [distanceFn=]
+ * @param {Point[]|any[]} neighbors - The array of {@link Point} elements
+ * @param {Function} [distanceFn] - Optional, {@link distSquared} will be used if none provided
  *
  * @return {Point[]|any[]}
  *
+ *
  * @example
+ * var nn = require("./nearestNeighbor.js");
  * var neighbors = [
  *       {x: 5, y: 5},
  *       {x: 3, y: 3},
@@ -23,10 +27,10 @@
  *       {x: 2, y: 2},
  *       //other points
  *  ];
- * var ordered_elements = nearestNeighbor.NearestNeighborBruteForce(neighbors);
- * // ordered_elements now contain the neighbors, in the order they ought to be visited.
+ * var ordered_neighbors = nn.sortBruteForce(neighbors);
+ * // ordered_neighbors now contain the neighbors, in the order they ought to be visited.
  */
-function NearestNeighborBruteForce(neighbors, distanceFn) {
+function sortBruteForce(neighbors, distanceFn) {
     var total = neighbors.length || 0;
     if (!total) {
         return neighbors;
@@ -53,13 +57,14 @@ function NearestNeighborBruteForce(neighbors, distanceFn) {
 /**
  * Returns the nearest, relative to the provided home point, neighbor's index from the array of neighbors
  *
- * @param {Point|any} home
- * @param {Point[]|any[]} neighbors
- * @param {Function} [distanceFn=]
+ * @param {Point|any} home - The reference {@link Point}
+ * @param {Point[]|any[]} neighbors - The array of {@link Point} elements
+ * @param {Function} [distanceFn] Optional, {@link distSquared} will be used if none provided
  *
  * @return {number}
  *
  * @example
+ * var nn = require("./nearestNeighbor.js");
  * var home = {x: 6, y: 6};
  * var neighbors = [
  *       {x: 4, y: 4},
@@ -69,11 +74,11 @@ function NearestNeighborBruteForce(neighbors, distanceFn) {
  *       {x: 2, y: 2},
  *       //other points
  *  ];
- * var index = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
+ * var index = nn.getNearestIndex(home, neighbors);
  * // index will equal 2, because {x: 5, y: 5} is
  * // the nearest neighbor for {x: 6, y: 6} which is the home point
  */
-function NearestNeighborsIndex(home, neighbors, distanceFn) {
+function getNearestIndex(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
         distanceFn = DistSquared;
     }
@@ -92,13 +97,14 @@ function NearestNeighborsIndex(home, neighbors, distanceFn) {
 /**
  * Returns the nearest neighbor, relative to the provided home point, from the given array of neighbors
  *
- * @param {Point|any} home
- * @param {Point[]|any[]} neighbors
- * @param {Function} [distanceFn=]
+ * @param {Point|any} home - The reference {@link Point}
+ * @param {Point[]|any[]} neighbors - The array of {@link Point} elements
+ * @param {Function} [distanceFn] Optional, {@link distSquared} will be used if none provided
  *
  * @return {Point|any}
  *
  * @example
+ * var nn = require("./nearestNeighbor.js");
  * var home = {x: 6, y: 6};
  * var neighbors = [
  *       {x: 5, y: 5},
@@ -108,11 +114,11 @@ function NearestNeighborsIndex(home, neighbors, distanceFn) {
  *       {x: 2, y: 2},
  *       //other points
  *  ];
- * var neighbor = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
+ * var neighbor = nn.getNearest(home, neighbors);
  * // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is
  * // the nearest neighbor for {x: 6, y: 6} which is the home point
  */
-function NearestNeighbor(home, neighbors, distanceFn) {
+function getNearest(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
         distanceFn = DistSquared;
     }
@@ -130,13 +136,14 @@ function NearestNeighbor(home, neighbors, distanceFn) {
 
 /**
  * Default distance function
+ * @private
  *
  * @param {Point} pt1
  * @param {Point} pt2
  *
  * @return {number}
  */
-function DistSquared(pt1, pt2) {
+function distSquared(pt1, pt2) {
     var diffX = pt1.x - pt2.x;
     var diffY = pt1.y - pt2.y;
     return (diffX*diffX+diffY*diffY);
@@ -156,8 +163,8 @@ function Point(x, y) {
 if (typeof module === "object") {
     module.exports = {
         "Point": Point,
-        "NearestNeighborBruteForce": NearestNeighborBruteForce,
-        "NearestNeighborsIndex": NearestNeighborsIndex,
-        "NearestNeighbor": NearestNeighbor
+        "sortBruteForce": sortBruteForce,
+        "getNearestIndex": getNearestIndex,
+        "getNearest": getNearest
     };
 }

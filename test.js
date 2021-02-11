@@ -1,5 +1,5 @@
 var assert = require("assert");
-var nearestNeighbor = require("./nearestNeighbor.js");
+var nn = require("./nearestNeighbor.js");
 
 var tests = [
     {
@@ -38,6 +38,6 @@ var tests = [
 
 
 for(let test of tests) {
-    var results = nearestNeighbor.NearestNeighborBruteForce(test.elements);
+    var results = nn.sortBruteForce(test.elements);
     assert.deepEqual(test.results, results);
 }

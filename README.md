@@ -1,3 +1,5 @@
+# [Nearest Neighbor](https://github.com/ignatisD/nearest-neighbor)
+
 [![view on npm](https://img.shields.io/npm/v/@ignatisd/nearest-neighbor)](https://www.npmjs.com/package/@ignatisd/nearest-neighbor)
 [![license](https://img.shields.io/npm/l/@ignatisd/nearest-neighbor)](https://github.com/ignatisD/nearest-neighbor/blob/HEAD/LICENSE)
 
@@ -7,14 +9,14 @@
 Brute forcing the nearest neighbor problem.
 
 **Author**: Ignatios Drakoulas  
+**License**: MIT  
 
 * [nearestNeighbor](#module_nearestNeighbor)
     * [~Point](#module_nearestNeighbor..Point)
         * [new Point(x, y)](#new_module_nearestNeighbor..Point_new)
-    * [~NearestNeighborBruteForce(neighbors, [distanceFn&#x3D;])](#module_nearestNeighbor..NearestNeighborBruteForce) ⇒ <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code>
-    * [~NearestNeighborsIndex(home, neighbors, [distanceFn&#x3D;])](#module_nearestNeighbor..NearestNeighborsIndex) ⇒ <code>number</code>
-    * [~NearestNeighbor(home, neighbors, [distanceFn&#x3D;])](#module_nearestNeighbor..NearestNeighbor) ⇒ <code>Point</code> \| <code>any</code>
-    * [~DistSquared(pt1, pt2)](#module_nearestNeighbor..DistSquared) ⇒ <code>number</code>
+    * [~sortBruteForce(neighbors, [distanceFn])](#module_nearestNeighbor..sortBruteForce) ⇒ <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code>
+    * [~getNearestIndex(home, neighbors, [distanceFn])](#module_nearestNeighbor..getNearestIndex) ⇒ <code>number</code>
+    * [~getNearest(home, neighbors, [distanceFn])](#module_nearestNeighbor..getNearest) ⇒ <code>Point</code> \| <code>any</code>
 
 <a name="module_nearestNeighbor..Point"></a>
 
@@ -31,20 +33,21 @@ Represents a point in two dimensions.
 | x | <code>Number</code> | abscissa |
 | y | <code>Number</code> | ordinate |
 
-<a name="module_nearestNeighbor..NearestNeighborBruteForce"></a>
+<a name="module_nearestNeighbor..sortBruteForce"></a>
 
-### nearestNeighbor~NearestNeighborBruteForce(neighbors, [distanceFn&#x3D;]) ⇒ <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code>
+### nearestNeighbor~sortBruteForce(neighbors, [distanceFn]) ⇒ <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code>
 Sorts all the neighbors by their respective distance starting from the first
 
 **Kind**: inner method of [<code>nearestNeighbor</code>](#module_nearestNeighbor)  
 
-| Param | Type |
-| --- | --- |
-| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | 
-| [distanceFn=] | <code>function</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of [Point](Point) elements |
+| [distanceFn] | <code>function</code> | Optional, [distSquared](distSquared) will be used if none provided |
 
 **Example**  
 ```js
+var nn = require("./nearestNeighbor.js");
 var neighbors = [
       {x: 5, y: 5},
       {x: 3, y: 3},
@@ -53,24 +56,25 @@ var neighbors = [
       {x: 2, y: 2},
       //other points
  ];
-var ordered_elements = nearestNeighbor.NearestNeighborBruteForce(neighbors);
-// ordered_elements now contain the neighbors, in the order they ought to be visited.
+var ordered_neighbors = nn.sortBruteForce(neighbors);
+// ordered_neighbors now contain the neighbors, in the order they ought to be visited.
 ```
-<a name="module_nearestNeighbor..NearestNeighborsIndex"></a>
+<a name="module_nearestNeighbor..getNearestIndex"></a>
 
-### nearestNeighbor~NearestNeighborsIndex(home, neighbors, [distanceFn&#x3D;]) ⇒ <code>number</code>
+### nearestNeighbor~getNearestIndex(home, neighbors, [distanceFn]) ⇒ <code>number</code>
 Returns the nearest, relative to the provided home point, neighbor's index from the array of neighbors
 
 **Kind**: inner method of [<code>nearestNeighbor</code>](#module_nearestNeighbor)  
 
-| Param | Type |
-| --- | --- |
-| home | <code>Point</code> \| <code>any</code> | 
-| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | 
-| [distanceFn=] | <code>function</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| home | <code>Point</code> \| <code>any</code> | The reference [Point](Point) |
+| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of [Point](Point) elements |
+| [distanceFn] | <code>function</code> | Optional, [distSquared](distSquared) will be used if none provided |
 
 **Example**  
 ```js
+var nn = require("./nearestNeighbor.js");
 var home = {x: 6, y: 6};
 var neighbors = [
       {x: 4, y: 4},
@@ -80,25 +84,26 @@ var neighbors = [
       {x: 2, y: 2},
       //other points
  ];
-var index = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
+var index = nn.getNearestIndex(home, neighbors);
 // index will equal 2, because {x: 5, y: 5} is
 // the nearest neighbor for {x: 6, y: 6} which is the home point
 ```
-<a name="module_nearestNeighbor..NearestNeighbor"></a>
+<a name="module_nearestNeighbor..getNearest"></a>
 
-### nearestNeighbor~NearestNeighbor(home, neighbors, [distanceFn&#x3D;]) ⇒ <code>Point</code> \| <code>any</code>
+### nearestNeighbor~getNearest(home, neighbors, [distanceFn]) ⇒ <code>Point</code> \| <code>any</code>
 Returns the nearest neighbor, relative to the provided home point, from the given array of neighbors
 
 **Kind**: inner method of [<code>nearestNeighbor</code>](#module_nearestNeighbor)  
 
-| Param | Type |
-| --- | --- |
-| home | <code>Point</code> \| <code>any</code> | 
-| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | 
-| [distanceFn=] | <code>function</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| home | <code>Point</code> \| <code>any</code> | The reference [Point](Point) |
+| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of [Point](Point) elements |
+| [distanceFn] | <code>function</code> | Optional, [distSquared](distSquared) will be used if none provided |
 
 **Example**  
 ```js
+var nn = require("./nearestNeighbor.js");
 var home = {x: 6, y: 6};
 var neighbors = [
       {x: 5, y: 5},
@@ -108,23 +113,11 @@ var neighbors = [
       {x: 2, y: 2},
       //other points
  ];
-var neighbor = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
+var neighbor = nn.getNearest(home, neighbors);
 // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is
 // the nearest neighbor for {x: 6, y: 6} which is the home point
 ```
-<a name="module_nearestNeighbor..DistSquared"></a>
-
-### nearestNeighbor~DistSquared(pt1, pt2) ⇒ <code>number</code>
-Default distance function
-
-**Kind**: inner method of [<code>nearestNeighbor</code>](#module_nearestNeighbor)  
-
-| Param | Type |
-| --- | --- |
-| pt1 | <code>Point</code> | 
-| pt2 | <code>Point</code> | 
-
 
 * * *
 
-&copy; 2021 Ignatios Drakoulas
+Copyright &copy; 2021 Ignatios Drakoulas
