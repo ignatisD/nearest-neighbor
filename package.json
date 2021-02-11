@@ -4,7 +4,6 @@
   "description": "Helps with the nearest neighbor problem",
   "main": "nearestNeighbor.js",
   "scripts": {
-    "commit": "cz",
     "test": "node test.js",
     "docs": "node nearestNeighbor.js && node node_modules/jsdoc-to-markdown/bin/cli.js --template README.hbs nearestNeighbor.js > README.md",
     "preview-docs": "node node_modules/jsdoc-to-markdown/bin/cli.js --json nearestNeighbor.js"
@@ -17,7 +16,6 @@
   "license": "MIT",
   "devDependencies": {
     "assert": "^2.0.0",
-    "cz-conventional-changelog": "^3.3.0",
     "jsdoc-to-markdown": "^6.0.1",
     "semantic-release": "^17.3.8"
   },
@@ -26,10 +24,5 @@
     "branches": [
       "master"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
