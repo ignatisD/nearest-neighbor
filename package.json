@@ -2,7 +2,7 @@
   "name": "@ignatisd/nearest-neighbor",
   "version": "2.0.0",
   "description": "Helps with the nearest neighbor problem",
-  "main": "nearestNeighbor.js",
+  "main": "dist/NearestNeighbor.js",
   "scripts": {
     "test": "jest --ci --coverage && codecov",
     "jest": "jest --ci --coverage",
