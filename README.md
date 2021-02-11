@@ -1,10 +1,12 @@
+[![view on npm](https://img.shields.io/npm/v/@ignatisd/nearest-neighbor)](https://www.npmjs.com/package/@ignatisd/nearest-neighbor)
+[![license](https://img.shields.io/npm/l/@ignatisd/nearest-neighbor)](https://github.com/ignatisD/nearest-neighbor/blob/HEAD/LICENSE)
+
 <a name="module_nearestNeighbor"></a>
 
 ## nearestNeighbor
-**Author**: Ignatios Drakoulas
-nearestNeighbor npm module
+Brute forcing the nearest neighbor problem.
 
-Brute forcing the nearest neighbor problem.  
+**Author**: Ignatios Drakoulas  
 
 * [nearestNeighbor](#module_nearestNeighbor)
     * [~Point](#module_nearestNeighbor..Point)
@@ -71,16 +73,16 @@ Returns the nearest, relative to the provided home point, neighbor's index from 
 ```js
 var home = {x: 6, y: 6};
 var neighbors = [
-      {x: 5, y: 5},
-      {x: 3, y: 3},
       {x: 4, y: 4},
+      {x: 3, y: 3},
+      {x: 5, y: 5},
       {x: 1, y: 1},
       {x: 2, y: 2},
       //other points
  ];
 var index = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
 // index will equal 2, because {x: 5, y: 5} is
-// the nearest neighbor for {x: 6, y: 6} who is the home point
+// the nearest neighbor for {x: 6, y: 6} which is the home point
 ```
 <a name="module_nearestNeighbor..NearestNeighbor"></a>
 
@@ -108,7 +110,7 @@ var neighbors = [
  ];
 var neighbor = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
 // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is
-// the nearest neighbor for {x: 6, y: 6} who is the home point
+// the nearest neighbor for {x: 6, y: 6} which is the home point
 ```
 <a name="module_nearestNeighbor..DistSquared"></a>
 
@@ -122,3 +124,7 @@ Default distance function
 | pt1 | <code>Point</code> | 
 | pt2 | <code>Point</code> | 
 
+
+* * *
+
+&copy; 2021 Ignatios Drakoulas

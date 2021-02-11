@@ -1,9 +1,9 @@
 /**
- * @module
- * @author Ignatios Drakoulas
- * nearestNeighbor npm module
- *
  * Brute forcing the nearest neighbor problem.
+ *
+ * @module nearestNeighbor
+ * @author Ignatios Drakoulas
+ *
  **/
 
 /**
@@ -12,7 +12,7 @@
  * @param {Point[]|any[]} neighbors
  * @param {Function} [distanceFn=]
  *
- * @returns {Point[]|any[]}
+ * @return {Point[]|any[]}
  *
  * @example
  * var neighbors = [
@@ -57,21 +57,21 @@ function NearestNeighborBruteForce(neighbors, distanceFn) {
  * @param {Point[]|any[]} neighbors
  * @param {Function} [distanceFn=]
  *
- * @returns {number}
+ * @return {number}
  *
  * @example
  * var home = {x: 6, y: 6};
  * var neighbors = [
- *       {x: 5, y: 5},
- *       {x: 3, y: 3},
  *       {x: 4, y: 4},
+ *       {x: 3, y: 3},
+ *       {x: 5, y: 5},
  *       {x: 1, y: 1},
  *       {x: 2, y: 2},
  *       //other points
  *  ];
  * var index = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
  * // index will equal 2, because {x: 5, y: 5} is
- * // the nearest neighbor for {x: 6, y: 6} who is the home point
+ * // the nearest neighbor for {x: 6, y: 6} which is the home point
  */
 function NearestNeighborsIndex(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
@@ -96,7 +96,7 @@ function NearestNeighborsIndex(home, neighbors, distanceFn) {
  * @param {Point[]|any[]} neighbors
  * @param {Function} [distanceFn=]
  *
- * @returns {Point|any}
+ * @return {Point|any}
  *
  * @example
  * var home = {x: 6, y: 6};
@@ -110,7 +110,7 @@ function NearestNeighborsIndex(home, neighbors, distanceFn) {
  *  ];
  * var neighbor = nearestNeighbor.NearestNeighborsIndex(home, neighbors);
  * // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is
- * // the nearest neighbor for {x: 6, y: 6} who is the home point
+ * // the nearest neighbor for {x: 6, y: 6} which is the home point
  */
 function NearestNeighbor(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
@@ -134,7 +134,7 @@ function NearestNeighbor(home, neighbors, distanceFn) {
  * @param {Point} pt1
  * @param {Point} pt2
  *
- * @returns {number}
+ * @return {number}
  */
 function DistSquared(pt1, pt2) {
     var diffX = pt1.x - pt2.x;

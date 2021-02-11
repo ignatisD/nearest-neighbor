@@ -1,11 +1,11 @@
 {
   "name": "@ignatisd/nearest-neighbor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helps with the nearest neighbor problem",
   "main": "nearestNeighbor.js",
   "scripts": {
     "test": "node test.js",
-    "prepare": "node nearestNeighbor.js && node node_modules/jsdoc-to-markdown/bin/cli.js nearestNeighbor.js > README.md"
+    "prepare": "node nearestNeighbor.js && node node_modules/jsdoc-to-markdown/bin/cli.js --template README.hbs nearestNeighbor.js > README.md"
   },
   "repository": {
     "type": "git",
