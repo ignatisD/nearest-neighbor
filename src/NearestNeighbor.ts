@@ -18,7 +18,7 @@
  *
  *
  * @example
- * var nn = require("./nearestNeighbor.js");
+ * var nn = require("NearestNeighbor.js");
  * var neighbors = [
  *       {x: 5, y: 5},
  *       {x: 3, y: 3},
@@ -64,7 +64,7 @@ export function sortBruteForce<T = Point>(neighbors: T[], distanceFn?: (a: T | P
  * @return {number}
  *
  * @example
- * var nn = require("./nearestNeighbor.js");
+ * var nn = require("NearestNeighbor.js");
  * var home = {x: 6, y: 6};
  * var neighbors = [
  *       {x: 4, y: 4},
@@ -104,7 +104,7 @@ export function getNearestIndex<T = Point>(home: T, neighbors: T[], distanceFn?:
  * @return {Point|any}
  *
  * @example
- * var nn = require("./nearestNeighbor.js");
+ * var nn = require("NearestNeighbor.js");
  * var home = {x: 6, y: 6};
  * var neighbors = [
  *       {x: 5, y: 5},

@@ -11,12 +11,12 @@
     "build-ts": "tsc",
     "eslint": "eslint src",
     "coverage": "node_modules/.bin/codecov",
-    "docs": "node nearestNeighbor.js && node node_modules/jsdoc-to-markdown/bin/cli.js --template README.hbs nearestNeighbor.js > README.md",
+    "docs": "node dist/NearestNeighbor.js && node node_modules/jsdoc-to-markdown/bin/cli.js --template README.hbs dist/NearestNeighbor.js > README.md",
     "preview-docs": "node node_modules/jsdoc-to-markdown/bin/cli.js --json nearestNeighbor.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ignatisD/nearest-neighbor"
+    "url": "https://github.com/ignatisD/nearest-neighbor.git"
   },
   "author": "Ignatios Drakoulas",
   "license": "MIT",
@@ -57,5 +57,8 @@
     "branches": [
       "master"
     ]
+  },
+  "release": {
+    "branches": ["master", {"name": "next", "prerelease": true}]
   }
 }
