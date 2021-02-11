@@ -36,7 +36,7 @@ function sortBruteForce(neighbors, distanceFn) {
         return neighbors;
     }
     if (typeof distanceFn === "undefined") {
-        distanceFn = DistSquared;
+        distanceFn = distSquared;
     }
     if (typeof distanceFn !== "function") {
         return neighbors;
@@ -47,7 +47,7 @@ function sortBruteForce(neighbors, distanceFn) {
     do {
         // just to be sure nothing crazy happens
         ++iterations;
-        var closestIndex = NearestNeighborsIndex(home, neighbors, distanceFn);
+        var closestIndex = getNearestIndex(home, neighbors, distanceFn);
         home = neighbors.splice(closestIndex, 1).shift();
         results.push(home);
     } while (neighbors.length && iterations < total);
@@ -80,7 +80,7 @@ function sortBruteForce(neighbors, distanceFn) {
  */
 function getNearestIndex(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
-        distanceFn = DistSquared;
+        distanceFn = distSquared;
     }
     var closestElementIndex = 0;
     var shortestDistance = Infinity;
@@ -120,7 +120,7 @@ function getNearestIndex(home, neighbors, distanceFn) {
  */
 function getNearest(home, neighbors, distanceFn) {
     if (typeof distanceFn === "undefined") {
-        distanceFn = DistSquared;
+        distanceFn = distSquared;
     }
     var closestElement = null;
     var shortestDistance = Infinity;
@@ -165,6 +165,7 @@ if (typeof module === "object") {
         "Point": Point,
         "sortBruteForce": sortBruteForce,
         "getNearestIndex": getNearestIndex,
-        "getNearest": getNearest
+        "getNearest": getNearest,
+        "distSquared": distSquared,
     };
 }

@@ -42,8 +42,8 @@ Sorts all the neighbors by their respective distance starting from the first
 
 | Param | Type | Description |
 | --- | --- | --- |
-| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of [Point](Point) elements |
-| [distanceFn] | <code>function</code> | Optional, [distSquared](distSquared) will be used if none provided |
+| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of [~Point](~Point) elements |
+| [distanceFn] | <code>function</code> | Optional, [~distSquared](~distSquared) will be used if none provided |
 
 **Example**  
 ```js
@@ -68,9 +68,9 @@ Returns the nearest, relative to the provided home point, neighbor's index from 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| home | <code>Point</code> \| <code>any</code> | The reference [Point](Point) |
-| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of [Point](Point) elements |
-| [distanceFn] | <code>function</code> | Optional, [distSquared](distSquared) will be used if none provided |
+| home | <code>Point</code> \| <code>any</code> | The reference {@see Point} |
+| neighbors | <code>Array.&lt;Point&gt;</code> \| <code>Array.&lt;any&gt;</code> | The array of {@see Point} elements |
+| [distanceFn] | <code>function</code> | Optional, {@see distSquared} will be used if none provided |
 
 **Example**  
 ```js
