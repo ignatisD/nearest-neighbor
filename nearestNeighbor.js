@@ -31,9 +31,9 @@
  * // ordered_neighbors now contain the neighbors, in the order they ought to be visited.
  */
 function sortBruteForce(neighbors, distanceFn) {
-    var total = neighbors.length || 0;
+    var total = neighbors && neighbors.length ? neighbors.length : 0;
     if (!total) {
-        return neighbors;
+        return [];
     }
     if (typeof distanceFn === "undefined") {
         distanceFn = distSquared;
@@ -160,6 +160,7 @@ function Point(x, y) {
     this.y = y;
 }
 
+/* istanbul ignore next */
 if (typeof module === "object") {
     module.exports = {
         "Point": Point,

@@ -3,6 +3,7 @@
 [![view on npm](https://img.shields.io/npm/v/@ignatisd/nearest-neighbor)](https://www.npmjs.com/package/@ignatisd/nearest-neighbor)
 [![license](https://img.shields.io/npm/l/@ignatisd/nearest-neighbor)](https://github.com/ignatisD/nearest-neighbor/blob/HEAD/LICENSE)
 [![Tests](https://github.com/ignatisD/nearest-neighbor/workflows/Tests/badge.svg)](https://github.com/ignatisD/nearest-neighbor/actions?query=workflow%3ATests)
+[![codecov](https://codecov.io/gh/ignatisD/nearest-neighbor/branch/master/graph/badge.svg?token=48k4ayRapx)](https://codecov.io/gh/ignatisD/nearest-neighbor)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
