@@ -1,5 +1,5 @@
 /**
- * @module nearestNeighbor
+ * @module NearestNeighbor
  * @alias nn
  *
  * @description Brute forcing the nearest neighbor problem.
@@ -18,7 +18,7 @@
  *
  *
  * @example
- * var nn = require("./nearestNeighbor.js");
+ * var nn = require("NearestNeighbor.js");
  * var neighbors = [
  *       {x: 5, y: 5},
  *       {x: 3, y: 3},
@@ -30,27 +30,27 @@
  * var ordered_neighbors = nn.sortBruteForce(neighbors);
  * // ordered_neighbors now contain the neighbors, in the order they ought to be visited.
  */
-function sortBruteForce(neighbors, distanceFn) {
-    var total = neighbors && neighbors.length ? neighbors.length : 0;
+export function sortBruteForce<T = Point>(neighbors: T[], distanceFn?: (a: T | Point, b: T | Point) => number): T[] {
+    let total = neighbors && neighbors.length ? neighbors.length : 0;
     if (!total) {
         return [];
     }
     if (typeof distanceFn === "undefined") {
-        distanceFn = distSquared;
+        distanceFn = this.distSquared;
     }
     if (typeof distanceFn !== "function") {
         return neighbors;
     }
-    var home = neighbors.splice(0, 1).shift();
-    var results = [home];
-    var iterations = -1;
-    do {
+    let closestIndex = 0;
+    let home = neighbors.splice(closestIndex, 1).shift();
+    const results = [home];
+    while (neighbors.length && total > 0) {
         // just to be sure nothing crazy happens
-        ++iterations;
-        var closestIndex = getNearestIndex(home, neighbors, distanceFn);
+        --total;
+        closestIndex = this.getNearestIndex(home, neighbors, distanceFn);
         home = neighbors.splice(closestIndex, 1).shift();
         results.push(home);
-    } while (neighbors.length && iterations < total);
+    }
     return results;
 }
 
@@ -64,7 +64,7 @@ function sortBruteForce(neighbors, distanceFn) {
  * @return {number}
  *
  * @example
- * var nn = require("./nearestNeighbor.js");
+ * var nn = require("NearestNeighbor.js");
  * var home = {x: 6, y: 6};
  * var neighbors = [
  *       {x: 4, y: 4},
@@ -78,14 +78,14 @@ function sortBruteForce(neighbors, distanceFn) {
  * // index will equal 2, because {x: 5, y: 5} is
  * // the nearest neighbor for {x: 6, y: 6} which is the home point
  */
-function getNearestIndex(home, neighbors, distanceFn) {
+export function getNearestIndex<T = Point>(home: T, neighbors: T[], distanceFn?: (a: T | Point, b: T | Point) => number): number {
     if (typeof distanceFn === "undefined") {
-        distanceFn = distSquared;
+        distanceFn = this.distSquared;
     }
-    var closestElementIndex = 0;
-    var shortestDistance = Infinity;
-    for (var i = 0; i < neighbors.length; ++i) {
-        var d = distanceFn(home, neighbors[i]);
+    let closestElementIndex = 0;
+    let shortestDistance = Infinity;
+    for (let i = 0; i < neighbors.length; ++i) {
+        const d = distanceFn(home, neighbors[i]);
         if (d < shortestDistance) {
             closestElementIndex = i;
             shortestDistance = d;
@@ -104,7 +104,7 @@ function getNearestIndex(home, neighbors, distanceFn) {
  * @return {Point|any}
  *
  * @example
- * var nn = require("./nearestNeighbor.js");
+ * var nn = require("NearestNeighbor.js");
  * var home = {x: 6, y: 6};
  * var neighbors = [
  *       {x: 5, y: 5},
@@ -118,14 +118,14 @@ function getNearestIndex(home, neighbors, distanceFn) {
  * // neighbor will equal {x: 5, y: 5}, because {x: 5, y: 5} is
  * // the nearest neighbor for {x: 6, y: 6} which is the home point
  */
-function getNearest(home, neighbors, distanceFn) {
+export function getNearest<T = Point>(home: T, neighbors: T[], distanceFn?: (a: T | Point, b: T | Point) => number): T {
     if (typeof distanceFn === "undefined") {
-        distanceFn = distSquared;
+        distanceFn = this.distSquared;
     }
-    var closestElement = null;
-    var shortestDistance = Infinity;
-    for (var i = 0; i < neighbors.length; ++i) {
-        var d = distanceFn(home, neighbors[i]);
+    let closestElement: T = null;
+    let shortestDistance = Infinity;
+    for (let i = 0; i < neighbors.length; ++i) {
+        const d = distanceFn(home, neighbors[i]);
         if (d < shortestDistance) {
             closestElement = neighbors[i];
             shortestDistance = d;
@@ -143,10 +143,10 @@ function getNearest(home, neighbors, distanceFn) {
  *
  * @return {number}
  */
-function distSquared(pt1, pt2) {
-    var diffX = pt1.x - pt2.x;
-    var diffY = pt1.y - pt2.y;
-    return (diffX*diffX+diffY*diffY);
+export function distSquared(pt1: Point, pt2: Point): number {
+    const diffX = pt1.x - pt2.x;
+    const diffY = pt1.y - pt2.y;
+    return (diffX * diffX + diffY * diffY);
 }
 
 /**
@@ -155,18 +155,13 @@ function distSquared(pt1, pt2) {
  * @param {Number} x abscissa
  * @param {Number} y ordinate
  */
-function Point(x, y) {
-    this.x = x;
-    this.y = y;
-}
+export class Point {
 
-/* istanbul ignore next */
-if (typeof module === "object") {
-    module.exports = {
-        "Point": Point,
-        "sortBruteForce": sortBruteForce,
-        "getNearestIndex": getNearestIndex,
-        "getNearest": getNearest,
-        "distSquared": distSquared,
-    };
+    public x: number;
+    public y: number;
+
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
 }
