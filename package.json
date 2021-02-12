@@ -63,7 +63,8 @@
   },
   "release": {
     "branches": [
-      "master"
+      "master",
+      "next"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
