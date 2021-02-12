@@ -1,7 +1,8 @@
 {
   "name": "@ignatisd/nearest-neighbor",
-  "version": "3.0.1",
+  "version": "4.0.1",
   "description": "Helps with the nearest neighbor problem",
+  "typings": "dist/NearestNeighbor",
   "main": "dist/NearestNeighbor.js",
   "scripts": {
     "test": "jest --ci --coverage && codecov",

@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "outDir": "./dist",
-    "allowJs": true,
+    "declaration": true,
     "target": "es5"
   },
   "include": [
